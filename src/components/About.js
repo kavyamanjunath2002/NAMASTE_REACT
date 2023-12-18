@@ -32,13 +32,10 @@ class About extends React.Component{
              />  */}
     
     
-            <UserClass Name={"First (class)"}  
+            <UserClass Name={"Kavya (class)"}  
             location={"Bengaluru"}
             Contact={"@xyz"}
-            />
-            <UserClass Name={"Second (class)"}  
-            location={"Bengaluru"}
-            Contact={"@xyz"}
+          act={"@xyz"}
             />
     
     

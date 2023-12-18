@@ -5,36 +5,41 @@ class UserClass extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log( this.props.Name +" Child Constructor")
+    // console.log( this.props.Name +" Child Constructor")
 
     this.state ={
-        count: 0,
+        UserInfo:{
+            name:"dummy",
+            Location:"default", 
+        }
     };
 } 
 
-componentDidMount(){
- 
-    console.log(this.props.Name + "Child componentDidMount ")
+async componentDidMount(){
+    const data = await fetch("https://api.github.com/users/kavyamanjunath2002");
+    const json = await data.json();
+
+this.setState({
+    UserInfo:json
+});
+console.log(json)
 }
 
+componentDidUpdate(){
+    console.log("componentDidUpdate")
+}
   
         
     render(){
-        const {Name,location,Contact} = this.props;
-           const {count} = this.state;
-           console.log( this.props.Name +"Child Render")
+        const {name,location,avatar_url} = this.state.UserInfo;
+    
+        //    console.log( this.props.Name +"Child Render")
         return(
             <div className="user-card">
-            <h3>count:{count}</h3>
-            <button onClick={()=>{
-                this.setState({
-                    count:this.state.count+1
-                });
-
-            }}>Count Increase</button>
-            <h3>Name:{Name}</h3>
+                <img src={avatar_url}></img>
+            <h3>Name:{name}</h3>
             <h3>Location:{location}</h3>
-            <h3>Contact:{Contact}</h3>
+            {/* <h3>Contact:{Contact}</h3> */}
         </div>
 
         )
@@ -43,3 +48,6 @@ componentDidMount(){
 
 
 export default UserClass;
+
+
+
